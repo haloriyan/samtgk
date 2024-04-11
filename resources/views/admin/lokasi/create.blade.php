@@ -25,25 +25,25 @@
         <div class="flex gap-8">
             <div class="flex flex-col grow">
                 <div class="text-sm text-slate-500 mb-2 mt-4 ">Nama :</div>
-                <input type="text" name="name" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required value="Sampokja Kedunglurah">
+                <input type="text" name="name" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required>
                 <div class="text-sm text-slate-500 mb-2 mt-4">Alamat :</div>
-                <textarea name="address" id="address" rows="4" class="bg-slate-100 w-full rounded p-1 ps-3 pe-3 outline-0">Taman Desa Kedunglurah, Kecamatan Pogalan, Kabupaten Trenggalek</textarea>
+                <textarea name="address" id="address" rows="4" class="bg-slate-100 w-full rounded p-1 ps-3 pe-3 outline-0"></textarea>
                 <div class="text-sm text-slate-500 mb-2 mt-4">Link Google Maps :</div>
-                <input type="text" name="gmaps_link" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required value="https://maps.app.goo.gl/Hufspz7s58XYQFuR9">
+                <input type="text" name="gmaps_link" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required>
     
                 <div class="flex gap-8">
                     <div class="flex flex-col grow">
                         <div class="text-sm text-slate-500 mb-2 mt-4">Koordinat Latitude :</div>
-                        <input type="text" name="latitude" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required value="-8.1141306">
+                        <input type="text" name="latitude" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required>
                     </div>
                     <div class="flex flex-col grow">
                         <div class="text-sm text-slate-500 mb-2 mt-4">Koordinat Longitude :</div>
-                        <input type="text" name="longitude" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required value="111.7752092">
+                        <input type="text" name="longitude" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required>
                     </div>
                 </div>
     
                 <div class="text-sm text-slate-500 mb-2 mt-4 ">Bentuk Layanan :</div>
-                <input type="text" name="bentuk" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required value="Payment Point">
+                <input type="text" name="bentuk" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required>
             </div>
             <div class="flex flex-col w-6/12">
                 <div class="text-sm text-slate-500 mb-2 mt-4">Jenis Layanan yang Tersedia :</div>
@@ -82,9 +82,9 @@
         layanan: [],
         image: [],
         jadwal: [
-            {hari: "Senin - Kamis",jam_mulai: "08:00",jam_selesai: "16:00"},
+            {hari: "Senin - Kamis",jam_mulai: "08:00",jam_selesai: "12:00"},
             {hari: "Jumat",jam_mulai: "08:00",jam_selesai: "11:00"},
-            {hari: "Sabtu",jam_mulai: "08:00",jam_selesai: "14:00"}
+            {hari: "Sabtu",jam_mulai: "08:00",jam_selesai: "12:00"}
         ],
     };
 

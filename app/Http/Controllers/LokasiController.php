@@ -144,6 +144,16 @@ class LokasiController extends Controller
             ]);
         }
 
+        // HANDLING IMAGES
+        if ($request->image_to_delete != "") {
+            foreach (explode("||", $request->image_to_delete) as $id) {
+                $img = LokasiImage::where('id', $id);
+                $image = $img->first();
+                $img->delete();
+                Storage::delete('public/lokasi_images/' . $image->filename);
+            }
+        }
+
         return redirect()->route('admin.lokasi')->with([
             'message' => "Berhasil mengubah data lokasi pelayanan"
         ]);

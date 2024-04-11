@@ -14,7 +14,7 @@
 @section('content')
 <div class="flex flex-wrap gap-8">
     @foreach ($lokasis  as $lokasi)
-        <div class="bg-white rounded-lg shadow p-4 w-4/12 relative">
+        <div class="bg-white rounded-lg shadow p-4 flex flex-col grow w-3/12 relative">
             <img src="{{ asset('storage/lokasi_images/' . $lokasi->image) }}" alt="{{ $lokasi->name }}" class="w-100 aspect-video rounded-lg object-cover">
             <div class="text-lg text-slate-700 font-bold mt-2">{{ $lokasi->name }}</div>
             <div class="flex flex-col gap-2 mt-2">
@@ -39,6 +39,8 @@
         </div>
     @endforeach
 </div>
+
+<div class="h-16"></div>
 
 <div id="DeleteModal" class="fixed top-0 left-0 right-0 bottom-0 z-10 bg-gray-400 bg-opacity-75 hidden row items-center justify-center">
     <div class="bg-white rounded-lg shadow-dark w-5/12 mobile:w-10/12">
@@ -69,6 +71,8 @@
 @section('javascript')
 <script>
     const del = data => {
+        data = jsonEscape(data);
+        console.log(data);
         data = JSON.parse(data);
         toggleModal("#DeleteModal");
         select("#DeleteModal #id").value = data.id;

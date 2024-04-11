@@ -12,6 +12,8 @@
         @csrf
         <input type="hidden" id="initial_layanans" value="{{ json_encode($layananIDs) }}">
         <input type="hidden" id="initial_jadwals" value="{{ json_encode($jadwals) }}">
+        {{-- <input type="hidden" id="initial_images" value="{{ json_encode($lokasi->images) }}"> --}}
+        <input type="hidden" id="image_to_delete">
 
         <div class="flex gap-8 items-center mb-6">
             <h2 class="text-xl text-slate-700 flex grow">Edit Lokasi</h2>
@@ -21,6 +23,14 @@
         </div>
 
         <div id="ImageInputArea" class="flex gap-4 items-center flex-wrap">
+            @foreach ($lokasi->images as $img)
+                <div class="h-20 aspect-square rounded input_wrapper relative" id="image_{{ $img->id }}">
+                    <div class="absolute top-0 left-0 right-0 bottom-0 z-5 bg-white border rounded flex items-center justify-center" style="color: rgba(0, 0, 0, 0.01);background-size: cover; background-repeat: no-repeat; background-position: center center;background-image: url({{ asset('storage/lokasi_images/' . $img->filename) }})">
+                        <i class="bx bx-image-add text-2xl"></i>
+                    </div>
+                    <button type="button" onclick="deleteImage({{ $img->id }})" class="h-6 aspect-square rounded bg-red-100 text-red-500 hover:bg-red-500 hover:text-white z-20 absolute top-0 right-0 mt-1 me-1 text-xs"><i class="bx bx-trash"></i></button>
+                </div>
+            @endforeach
             <div class="h-20 aspect-square rounded input_wrapper relative" id="wrapper_0">
                 <input type="file" name="images[]" id="images_0" class="absolute top-0 left-0 right-0 bottom-0 z-10 h-20 aspect-square opacity-0 cursor-pointer" onchange="readImage(this, '0')">
                 <div id="preview_0" class="absolute top-0 left-0 right-0 bottom-0 z-5 bg-white border rounded flex items-center justify-center">
@@ -93,6 +103,7 @@
         layanan: JSON.parse(select("#initial_layanans").value),
         image: [],
         jadwal: JSON.parse(select("#initial_jadwals").value),
+        image_to_delete: [],
     };
 
     const toggleLayanan = (data, btn) => {
@@ -159,6 +170,11 @@
     const removeImage = index => {
         select(`#wrapper_${index}`).remove();
         state.image.splice(index, 1);
+    }
+    const deleteImage = id => {
+        state.image_to_delete.push(id);
+        select(`#image_${id}`).remove();
+        select("input#image_to_delete").value = state.image_to_delete.join('||');
     }
 
     const renderJadwal = () => {

@@ -53,7 +53,7 @@
             <i class="bx bx-images text-xl"></i>
             <div class="text-sm">Banner Slider</div>
         </a>
-        <a href="{{ route('admin.info') }}" class="flex flex-row gap-4 items-center p-3 ps-4 pe-4 menu-item border-l-4 {{ $routeName == 'admin.info' ? 'border-cyan-400 text-cyan-700' : 'border-white' }}">
+        <a href="{{ route('admin.info') }}" class="flex flex-row gap-4 items-center p-2 ps-4 pe-4 menu-item border-l-4 {{ $routeName == 'admin.info' ? 'border-cyan-400 text-cyan-700' : 'border-white' }}">
             <i class="bx bx-info-circle text-xl"></i>
             <div class="text-sm">Informasi</div>
         </a>
@@ -178,6 +178,9 @@
 
     if (ScreenWidth > 1024) {
         ToggleSidebar();
+    }
+    function jsonEscape(str)  {
+        return str.replace(/\n/g, "\\\\n").replace(/\r/g, "\\\\r").replace(/\t/g, "\\\\t");
     }
 </script>
 
