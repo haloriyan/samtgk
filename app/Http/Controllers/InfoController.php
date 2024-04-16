@@ -70,7 +70,7 @@ class InfoController extends Controller
         $toUpdate = [
             'title' => $request->title,
             'body' => $request->body,
-            'label' => $request->label,
+            'labels' => $request->label,
         ];
 
         if ($request->hasFile('image')) {
