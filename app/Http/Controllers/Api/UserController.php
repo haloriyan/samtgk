@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Info;
+use App\Models\Layanan;
 use App\Models\PaymentLink;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -53,12 +54,27 @@ class UserController extends Controller
             'user' => $saveData,
         ]);
     }
+    public function update(Request $request) {
+        $u = User::where('token', $request->token);
+        $u->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'whatsapp' => $request->whatsapp,
+        ]);
+    }
     public function auth(Request $request) {
         $user = User::where('token', $request->token)->first();
 
         return response()->json([
             'status' => 200,
             'user' => $user,
+        ]);
+    }
+    public function logout(Request $request) {
+        $u = User::where('token', $request->token);
+        $u->update(['token' => null]);
+        return response()->json([
+            'ok'
         ]);
     }
     public function submitWa(Request $request) {
@@ -71,15 +87,23 @@ class UserController extends Controller
 
         return response()->json(['ok']);
     }
-    public function home() {
+    public function home(Request $request) {
         $banners = Banner::orderBy('updated_at', 'DESC')->get();
         $socials = config('app')['socials'];
         $infos = Info::orderBy('created_at', 'DESC')->with('admin')->paginate(5);
+        $layanans = Layanan::all();
+        $user = null;
+
+        if ($request->t != "") {
+            $user = User::where('token', $request->t)->first();
+        }
 
         return response()->json([
+            'user' => $user,
             'banners' => $banners,
             'socials' => $socials,
             'infos' => $infos,
+            'layanans' => $layanans,
         ]);
     }
     public function paymentLink() {

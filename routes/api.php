@@ -20,8 +20,10 @@ Route::get('info/{id}', [InfoController::class, 'read']);
 Route::group(['prefix' => "user"], function () {
     Route::post('login', [UserController::class, 'login']);
     Route::post('register', [UserController::class, 'register']);
+    Route::post('update', [UserController::class, 'update']);
     Route::post('auth', [UserController::class, 'auth']);
     Route::post('submit-wa', [UserController::class, 'submitWa']);
+    Route::post('logout', [UserController::class, 'logout']);
 });
 
 Route::group(['prefix' => "partnership"], function () {
