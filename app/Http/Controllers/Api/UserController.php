@@ -40,6 +40,16 @@ class UserController extends Controller
         ]);
     }
     public function register(Request $request) {
+        $request->validate([
+            'email' => "required|unique:users",
+            'name' => "required",
+            'password' => "required|min:6"
+        ], [
+            'unique' => 'Email telah digunakan. Mohon gunakan alamat email lainnya',
+            'required' => ":Attribute tidak boleh kosong",
+            'min' => ":Attribute paling tidak ada :min karakter"
+        ]);
+
         $token = Str::random(16);
         $saveData = User::create([
             'name' => $request->name,
@@ -92,6 +102,7 @@ class UserController extends Controller
         $infos = Info::orderBy('created_at', 'DESC')->with('admin')->paginate(5);
         $layanans = Layanan::all();
         $user = null;
+        Log::info($request->t);
 
         if ($request->t != "") {
             $user = User::where('token', $request->t)->first();

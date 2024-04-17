@@ -11,7 +11,8 @@ use App\Http\Controllers\SuratController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return bcrypt("123456");
+    // return bcrypt("123456");
+    return redirect('https://play.google.com/store/apps/details?id=dev.haloriyan.samsattrenggalek');
 });
 
 Route::post('handle-body-image', [InfoController::class, 'handleBodyImage'])->name('block.handleBodyImage');
