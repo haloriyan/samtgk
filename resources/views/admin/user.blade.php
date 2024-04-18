@@ -68,13 +68,29 @@
             </div>
 
             <div class="flex flex-wrap gap-4">
-                <div class="flex flex-col grow">
+                <div class="flex flex-col grow basis-5/12">
                     <div class="text-slate-500 text-sm">Nama</div>
                     <div class="text-slate-700 font-bold mt-1" id="name"></div>
                 </div>
-                <div class="flex flex-col grow">
+                <div class="flex flex-col grow basis-5/12">
                     <div class="text-slate-500 text-sm">Email</div>
                     <div class="text-slate-700 font-bold mt-1" id="email"></div>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-4 WhatsappArea mt-4">
+                <div class="flex flex-col grow basis-5/12">
+                    <div class="text-slate-500 text-sm">NIK</div>
+                    <div class="text-slate-700 font-bold mt-1" id="nik"></div>
+                </div>
+                <div class="flex flex-col grow basis-5/12">
+                    <div class="text-slate-500 text-sm">Nomor Polisi</div>
+                    <div class="text-slate-700 font-bold mt-1" id="nopol"></div>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-4 WhatsappArea mt-4">
+                <div class="flex flex-col grow basis-5/12">
+                    <div class="text-slate-500 text-sm">No. WhatsApp</div>
+                    <a class="text-slate-700 font-bold mt-1" target="_blank" id="wa"></a>
                 </div>
             </div>
 
@@ -94,6 +110,10 @@
 
         select("#DetailModal #name").innerHTML = data.name;
         select("#DetailModal #email").innerHTML = data.email;
+        select("#DetailModal #nik").innerHTML = data.nik;
+        select("#DetailModal #nopol").innerHTML = data.nopol;
+        select("#DetailModal #wa").innerHTML = `+62 ${data.whatsapp}`;
+        select("#DetailModal #wa").setAttribute('href', `https://wa.me/62${data.whatsapp}`);
     }
 </script>
 @endsection
