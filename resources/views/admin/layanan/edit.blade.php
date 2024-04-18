@@ -21,8 +21,8 @@
         <div class="text-sm text-slate-500 mb-2 mt-8">Nama Layanan :</div>
         <input type="text" name="name" placeholder="contoh: Balik Nama Kendaraan, Her Tahunan" value="{{ $layanan->name }}" class="bg-slate-100 w-full rounded h-14 p-1 ps-3 pe-3 outline-0" required>
         
-        <input type="text" class="h-8 bg-red-500 w-full" name="requirement" id="requirement" value="{{ $layanan->requirement }}">
-        <input type="text" class="h-8 bg-red-500 w-full" name="flow" id="flow" value="{{ $layanan->flow }}">
+        <input type="hidden" class="h-8 bg-red-500 w-full" name="requirement" id="requirement" value="{{ $layanan->requirement }}">
+        <input type="hidden" class="h-8 bg-red-500 w-full" name="flow" id="flow" value="{{ $layanan->flow }}">
 
         <div class="flex gap-8 mt-8">
             <div class="flex flex-col grow">
