@@ -15,6 +15,9 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function privacy() {
+        return view('privacy');
+    }
     public function login(Request $request) {
         $u = User::where('email', $request->email);
         $user = $u->first();

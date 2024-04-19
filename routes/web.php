@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\InfoController;
@@ -14,6 +15,8 @@ Route::get('/', function () {
     // return bcrypt("123456");
     return redirect('https://play.google.com/store/apps/details?id=dev.haloriyan.samsattrenggalek');
 });
+
+Route::get('privacy', [UserController::class, 'privacy']);
 
 Route::post('handle-body-image', [InfoController::class, 'handleBodyImage'])->name('block.handleBodyImage');
 
