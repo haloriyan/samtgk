@@ -16,7 +16,7 @@ Route::get('/', function () {
     return redirect('https://play.google.com/store/apps/details?id=dev.haloriyan.samsattrenggalek');
 });
 
-Route::get('privacy', [UserController::class, 'privacy']);
+Route::get('privacy-policy', [UserController::class, 'privacy']);
 
 Route::post('handle-body-image', [InfoController::class, 'handleBodyImage'])->name('block.handleBodyImage');
 
