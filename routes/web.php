@@ -11,10 +11,8 @@ use App\Http\Controllers\PaymentLinkController;
 use App\Http\Controllers\SuratController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    // return bcrypt("123456");
-    return redirect('https://play.google.com/store/apps/details?id=dev.haloriyan.samsattrenggalek');
-});
+Route::get('/', [UserController::class, 'download']);
+Route::get('download', [UserController::class, 'download']);
 
 Route::get('privacy-policy', [UserController::class, 'privacy']);
 
@@ -24,6 +22,10 @@ Route::group(['prefix' => "admin"], function () {
     Route::get('login', [AdminController::class, 'loginPage'])->name('admin.loginPage');
     Route::post('login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+    Route::get('/', function () {
+        return redirect()->route('admin.loginPage');
+    });
 
     Route::middleware(['Admin'])->group(function () {
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

@@ -11,12 +11,17 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
     public function privacy() {
         return view('privacy');
+    }
+    public function download() {
+        $filePath = public_path('SAGARA_Connect.apk');
+        return file_exists($filePath) ? response()->download($filePath) : abort(404);
     }
     public function login(Request $request) {
         $u = User::where('email', $request->email);
