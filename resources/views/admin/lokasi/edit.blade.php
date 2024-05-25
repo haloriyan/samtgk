@@ -10,10 +10,10 @@
 <div class="bg-white rounded-lg shadow p-8">
     <form action="{{ route('lokasi.update', $lokasi->id) }}" class="flex flex-col grow" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" id="initial_layanans" value="{{ json_encode($layananIDs) }}">
-        <input type="hidden" id="initial_jadwals" value="{{ json_encode($jadwals) }}">
+        <input type="hidden" id="initial_layanans" name="initial_layanans" value="{{ json_encode($layananIDs) }}">
+        <input type="hidden" id="initial_jadwals" name="initial_jadwals" value="{{ json_encode($jadwals) }}">
         {{-- <input type="hidden" id="initial_images" value="{{ json_encode($lokasi->images) }}"> --}}
-        <input type="hidden" id="image_to_delete">
+        <input type="hidden" id="image_to_delete" name="image_to_delete">
 
         <div class="flex gap-8 items-center mb-6">
             <h2 class="text-xl text-slate-700 flex grow">Edit Lokasi</h2>
@@ -76,7 +76,7 @@
                         </div>
                     @endforeach
                 </div>
-                <input type="text" class="h-20" name="layanan" id="layanan" value="{{ implode('||', $layananIDs) }}" required>
+                <input type="hidden" class="h-20" name="layanan" id="layanan" value="{{ implode('||', $layananIDs) }}" required>
             </div>
         </div>
 

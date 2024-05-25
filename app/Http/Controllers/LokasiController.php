@@ -166,9 +166,9 @@ class LokasiController extends Controller
             }
         }
         // Update featured image
-        $images = LokasiImage::where('lokasi_id', $id)->orderBy('updated_at', 'DESC')->get();
+        $currImages = LokasiImage::where('lokasi_id', $lokasi->id)->orderBy('updated_at', 'ASC')->get();
         $updateDataImage = Lokasi::where('id', $lokasi->id)->update([
-            'image' => $images[0]->filename,
+            'image' => $currImages[0]->filename,
         ]);
 
         return redirect()->route('admin.lokasi')->with([
