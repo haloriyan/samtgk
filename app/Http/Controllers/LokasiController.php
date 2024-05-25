@@ -153,6 +153,23 @@ class LokasiController extends Controller
                 Storage::delete('public/lokasi_images/' . $image->filename);
             }
         }
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $i => $image) {
+                $imageFileName = rand(1111, 9999)."_".$image->getClientOriginalName();
+                $saveImage = LokasiImage::create([
+                    'lokasi_id' => $lokasi->id,
+                    'filename' => $imageFileName,
+                ]);
+                
+                $image->storeAs('public/lokasi_images', $imageFileName);
+            }
+        }
+        // Update featured image
+        $images = LokasiImage::where('lokasi_id', $id)->orderBy('updated_at', 'DESC')->get();
+        $updateDataImage = Lokasi::where('id', $lokasi->id)->update([
+            'image' => $images[0]->filename,
+        ]);
 
         return redirect()->route('admin.lokasi')->with([
             'message' => "Berhasil mengubah data lokasi pelayanan"
