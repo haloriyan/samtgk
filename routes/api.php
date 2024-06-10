@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\PartnershipController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\OtpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,12 @@ Route::group(['prefix' => "user"], function () {
     Route::post('auth', [UserController::class, 'auth']);
     Route::post('submit-wa', [UserController::class, 'submitWa']);
     Route::post('logout', [UserController::class, 'logout']);
+    
+    Route::post('forget-password', [UserController::class, "forgetPassword"]);
+    Route::post('reset-password', [UserController::class, "resetPassword"]);
+
+    Route::post('otp-auth', [OtpController::class, 'auth']);
+    Route::post('otp-resend', [OtpController::class, 'resend']);
 });
 
 Route::group(['prefix' => "partnership"], function () {

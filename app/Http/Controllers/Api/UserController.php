@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\OtpController;
 use App\Models\Banner;
 use App\Models\Info;
 use App\Models\Layanan;
@@ -69,6 +70,39 @@ class UserController extends Controller
         return response()->json([
             'status' => 200,
             'user' => $saveData,
+        ]);
+    }
+    public function forgetPassword(Request $request) {
+        $email = $request->email;
+        $res = [
+            'status' => 404,
+            'message' => "Kami tidak dapat menemukan akun dengan email Anda",
+            'token' => null,
+            'user' => null,
+        ];
+
+        $data = User::where('email', $email);
+        $user = $data->first();
+
+        if ($user != "") {
+            $res['status'] = 200;
+            $res['token'] = Str::random(32);
+            $res['message'] = "Berhasil mengirim OTP";
+            $data->update(['token' => $res['token']]);
+            $res['user'] = $data->first();
+            $createOtp = OtpController::create($user, 'reset_password');
+        }
+
+        return response()->json($res);
+    }
+    public function resetPassword(Request $request) {
+        $data = User::where('id', $request->user_id);
+        $data->update([
+            'password' => bcrypt($request->password)
+        ]);
+
+        return response()->json([
+            'status' => 200
         ]);
     }
     public function update(Request $request) {
